@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boneka Memegang Bunga</title>
+    <style>
+        canvas {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawHead() {
+            ctx.beginPath();
+            ctx.arc(200, 100, 40, 0, Math.PI * 2, true); // Kepala
+            ctx.fillStyle = 'peachpuff';
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        function drawEyes() {
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(185, 90, 5, 0, Math.PI * 2, true); // Mata kiri
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(215, 90, 5, 0, Math.PI * 2, true); // Mata kanan
+            ctx.fill();
+        }
+
+        function drawMouth() {
+            ctx.beginPath();
+            ctx.arc(200, 110, 15, 0, Math.PI, false); // Mulut
+            ctx.stroke();
+        }
+
+        function drawBody() {
+            ctx.fillStyle = 'lightblue';
+            ctx.fillRect(160, 140, 80, 100); // Tubuh
+            ctx.strokeRect(160, 140, 80, 100); // Garis luar tubuh
+        }
+
+        function drawArms() {
+            ctx.fillStyle = 'lightpink';
+            ctx.fillRect(140, 150, 20, 60); // Lengan kiri
+            ctx.fillRect(240, 150, 20, 60); // Lengan kanan
+        }
+
+        function drawLegs() {
+            ctx.fillStyle = 'lightgreen';
+            ctx.fillRect(160, 240, 30, 60); // Kaki kiri
+            ctx.fillRect(210, 240, 30, 60); // Kaki kanan
+        }
+
+        function drawFlower(x, y) {
+            ctx.fillStyle = 'red';
+            for (let i = 0; i < 6; i++) {
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.arc(x, y, 20, i * Math.PI / 3, (i + 1) * Math.PI / 3, false);
+                ctx.closePath();
+                ctx.fill();
+            }
+            // Gambar pusat bunga
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2, false);
+            ctx.fillStyle = 'yellow';
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawStem(x, y) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, y + 50);
+            ctx.strokeStyle = 'green';
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        function drawText() {
+            ctx.font = '24px Arial';
+            ctx.fillStyle = 'black';
+            ctx.fillText('I Love You 3000', 130, 350);
+        }
+
+        function drawDoll() {
+            drawHead();
+            drawEyes();
+            drawMouth();
+            drawBody();
+            drawArms();
+            drawLegs();
+            // Gambar bunga di lengan kiri
+            drawFlower(140, 150);
+            drawStem(140, 170);
+            drawText();
+        }
+
+        drawDoll();
+    </script>
+</body>
+</html>
